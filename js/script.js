@@ -2,7 +2,7 @@
 // Chiedere all’utente di inserire una parola
 // Creare una funzione per capire se la parola inserita è palindroma
 
-const userWord = prompt('Inserisci una parola');
+const userWord = prompt('Inserisci una parola').toLocaleLowerCase().trim();
 
 /**Function that checks if a word is palindrome
  * 
@@ -40,16 +40,6 @@ function randomInt (min, max) {
 	return Math.floor(Math.random() * (max - min) + min);
 }
 
-const userChoice = prompt('Pari o Dispari?').toLowerCase;
-const userNumber = parseInt(prompt('Inserisci un numero da 1 a 5'));
-console.log(userChoice + '  ' + userNumber );
-
-const randomNumber = randomInt(1, 5);
-console.log(randomNumber);
-
-let sum = userNumber + randomNumber;
-console.log(sum);
-
 /**Function that checks if a number is even
  * 
  * @param {*} number number to be checked
@@ -62,10 +52,26 @@ function isEven (number) {
 	return false
 }
 
-if ((isEven(sum)) && (userChoice == 'pari')) {
+const userChoice = prompt('Pari o Dispari?').toLowerCase().trim();
+let userNumber = parseInt(prompt('Inserisci un numero da 1 a 5'));
+
+while ((isNaN(userNumber)) || (userNumber > 5) || (userNumber < 1)) {
+	userNumber = parseInt(prompt('Inserisci un numero da 1 a 5'));
+}
+
+const randomNumber = randomInt(1, 5);
+
+let sum = userNumber + randomNumber;
+
+console.log(`
+User choose : ${userChoice}
+user number : ${userNumber}
+AI number : ${randomNumber}
+Sum : ${sum}
+`);
+
+if ((isEven(sum)) && (userChoice == 'pari') || (!isEven(sum)) && (userChoice == 'dispari') ) {
 	console.log('Hai vinto!');
-} else if ((!isEven(sum)) && (userChoice == 'dispari')) {
-	console.log ('Hai vinto!');
 } else{
 	console.log('Hai perso!');
 }
