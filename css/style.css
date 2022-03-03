@@ -1,0 +1,18 @@
+body{
+	font-family: 'Raleway';
+	background-color: rgb(20, 12, 70);
+}
+
+section#palindrome,
+section#odd-or-even{
+	box-shadow: inset 1px 1px 10px 2px white;
+	border-radius: 10px;
+	width:50%;
+}
+
+section#palindrome input{
+	border-radius: 20px;
+	padding: .35rem 1.5rem;
+	color: white;
+	background-color: rgb(20, 12, 70) !important;
+}

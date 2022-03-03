@@ -2,8 +2,6 @@
 // Chiedere all’utente di inserire una parola
 // Creare una funzione per capire se la parola inserita è palindroma
 
-const userWord = prompt('Inserisci una parola').toLocaleLowerCase().trim();
-
 /**Function that checks if a word is palindrome
  * 
  * @param {*} word word to be checked
@@ -11,15 +9,52 @@ const userWord = prompt('Inserisci una parola').toLocaleLowerCase().trim();
  */
 function isPalindrome (word) {
 	const wordArray = Array.from(word);
-	const reversedWordArray = [...wordArray].reverse();
-	const reversedWord = reversedWordArray.join('');
+	const reversedWord = [...wordArray].reverse().join('');
 	if ( word === reversedWord) {
 		return true
 	}
 	return false
 }
 
-console.log(isPalindrome(userWord));
+/**Function that adds HTML content inside DOM Element inner HTML
+ * 
+ * @param {*} DOMElement dom element where to add content
+ * @param {*} content content that will be added
+ * @returns the addition of content inside the dom element inner html
+ */
+function addHTMLContent (DOMElement, content) {
+	return DOMElement.innerHTML = content;
+}
+
+const sectionPalindrome = document.querySelector('#palindrome');
+
+const sectionTitle = document.createElement('h2');
+addHTMLContent(sectionTitle, 'Check if your word is palindrome :');
+
+const textInput = document.createElement('input');
+textInput.type = 'text';
+textInput.placeholder = "Insert your word";
+
+sectionPalindrome.prepend(sectionTitle, textInput);
+
+const outputElement = document.getElementById('output');
+
+
+const checkBtn = document.querySelector('#check-palindrome');
+
+checkBtn.addEventListener ( 'click', function() {
+	addHTMLContent(outputElement, '');
+	const userWord = textInput.value;
+	console.log(userWord);
+	console.log(isPalindrome(userWord));
+	if ( isPalindrome(userWord) === true ) {
+		addHTMLContent(outputElement, 'It\'s palindrome!');
+	} else {
+		addHTMLContent(outputElement, 'It\'s not palindrome!');
+	}
+})
+
+
 
 
 // Pari e Dispari
@@ -52,7 +87,11 @@ function isEven (number) {
 	return false
 }
 
-const userChoice = prompt('Pari o Dispari?').toLowerCase().trim();
+
+const playBtn = document.querySelector('#play');
+
+play.addEventListener ( 'click', function() {
+	const userChoice = prompt('Pari o Dispari?').toLowerCase().trim();
 let userNumber = parseInt(prompt('Inserisci un numero da 1 a 5'));
 
 while ((isNaN(userNumber)) || (userNumber > 5) || (userNumber < 1)) {
@@ -63,7 +102,7 @@ const randomNumber = randomInt(1, 5);
 
 let sum = userNumber + randomNumber;
 
-console.log(`
+alert(`
 User choose : ${userChoice}
 user number : ${userNumber}
 AI number : ${randomNumber}
@@ -71,10 +110,14 @@ Sum : ${sum}
 `);
 
 if ((isEven(sum)) && (userChoice == 'pari') || (!isEven(sum)) && (userChoice == 'dispari') ) {
-	console.log('Hai vinto!');
+	alert('Hai vinto!');
 } else{
-	console.log('Hai perso!');
+	alert('Hai perso!');
 }
+})
+
+
+
 
 
 
