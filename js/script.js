@@ -8,12 +8,7 @@
  * @returns true if the word is palindrome, otherwise returs false.
  */
 function isPalindrome (word) {
-	const wordArray = Array.from(word);
-	const reversedWord = [...wordArray].reverse().join('');
-	if ( word === reversedWord) {
-		return true
-	}
-	return false
+	return ([...Array.from(word)].reverse().join('') === word);
 }
 
 /**Function that adds HTML content inside DOM Element inner HTML
@@ -45,8 +40,6 @@ const checkBtn = document.querySelector('#check-palindrome');
 checkBtn.addEventListener ( 'click', function() {
 	addHTMLContent(outputElement, '');
 	const userWord = textInput.value;
-	console.log(userWord);
-	console.log(isPalindrome(userWord));
 	if ( isPalindrome(userWord) === true ) {
 		addHTMLContent(outputElement, 'It\'s palindrome!');
 	} else {
@@ -81,10 +74,7 @@ function randomInt (min, max) {
  * @returns true if number is even, otherwise returns false
  */
 function isEven (number) {
-	if ( number % 2 === 0) {
-		return true
-	}
-	return false
+	return number % 2 === 0;
 }
 
 
@@ -92,7 +82,7 @@ const playBtn = document.querySelector('#play');
 
 play.addEventListener ( 'click', function() {
 	const userChoice = prompt('Pari o Dispari?').toLowerCase().trim();
-let userNumber = parseInt(prompt('Inserisci un numero da 1 a 5'));
+	let userNumber = '';
 
 while ((isNaN(userNumber)) || (userNumber > 5) || (userNumber < 1)) {
 	userNumber = parseInt(prompt('Inserisci un numero da 1 a 5'));
@@ -105,7 +95,7 @@ let sum = userNumber + randomNumber;
 alert(`
 User choose : ${userChoice}
 user number : ${userNumber}
-AI number : ${randomNumber}
+aI number : ${randomNumber}
 Sum : ${sum}
 `);
 
